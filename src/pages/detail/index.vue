@@ -1,33 +1,37 @@
 <template>
-  <div>
-    
-  </div>
+  <div>{{bookid}}</div>
 </template>
 
 <script>
-  export default {
-    name: '',
-    props: [''],
-    data () {
-      return {
-
-      }
+import { get } from "@/util";
+export default {
+  name: "",
+  props: [""],
+  data() {
+    return {
+      bookid: ""
+    };
   },
 
-    components: {},
+  components: {},
 
-    computed: {},
+  computed: {},
 
-    beforeMount () {},
+  beforeMount() {},
 
-    mounted () {},
+  mounted() {
+    this.bookid = this.$root.$mp.query.id;
+    this.getDetail();
+  },
 
-    methods: {},
+  methods: {
+    async getDetail() {
+      const info = await get("/weapp/bookdetail", { id: this.bookid });
+    }
+  },
 
-    watch: {}
-
-  }
+  watch: {}
+};
 </script>
 <style lang='scss' scoped>
-
 </style>

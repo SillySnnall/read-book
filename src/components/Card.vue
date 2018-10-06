@@ -2,6 +2,7 @@
   <a :href="detailUrl">
 
   <div class="book-card">
+    <!-- @click.stop表示事件不会往上传了 -->
     <div class="thumb" @click.stop="preview">
       <img :src="book.image" 
             class="img"
@@ -42,60 +43,58 @@
   
 </template>
 <script>
-import Rate from '@/components/Rate'
+import Rate from "@/components/Rate";
 export default {
   components: {
     Rate
   },
-  props: ['book'],
+  props: ["book"],
   computed: {
-    detailUrl () {
-      return '/pages/detail/main?id=' + this.book.id
+    detailUrl() {
+      return "/pages/detail/main?id=" + this.book.id;
     }
   },
   methods: {
-    preview () {
+    preview() {
       wx.previewImage({
         current: this.book.image,
         urls: [this.book.image]
-      })
+      });
     }
   }
-}
+};
 </script>
 <style lang='scss' scoped>
-.book-card{
-  padding:5px;
+.book-card {
+  padding: 5px;
   overflow: hidden;
-  margin-top:5px;
-  margin-bottom:5px;
-  font-size:14px;
-  .thumb{
-    width:90px;
-    height:90px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  .thumb {
+    width: 90px;
+    height: 90px;
     float: left;
-    margin:0 auto;
-    overflow:hidden;
-    .img{
+    margin: 0 auto;
+    overflow: hidden;
+    .img {
       max-width: 100%;
       max-height: 100%;
     }
   }
-  .detail{
+  .detail {
     margin-left: 100px;
-    .row{
-      line-height:20px;
-      margin-bottom:3px;
+    .row {
+      line-height: 20px;
+      margin-bottom: 3px;
     }
-    .right{
+    .right {
       float: right;
-      
     }
-    .left{
-      margin-right:80px;
+    .left {
+      margin-right: 80px;
     }
   }
-  
 }
 </style>
 
