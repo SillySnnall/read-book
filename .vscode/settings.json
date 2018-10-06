@@ -1,0 +1,13 @@
+{
+    "favorites.sortDirection": "ASC",
+    "favorites.groupsFirst": true,
+    "favorites.root": [
+        {
+            "type": "Directory",
+            "name": "d:\\WX_min_code\\read-book\\src",
+            "parent_id": null,
+            "workspacePath": "src",
+            "id": "Qxfkj1m57yhMeoLN"
+        }
+    ]
+}
