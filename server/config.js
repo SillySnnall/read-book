@@ -1,13 +1,14 @@
 const CONF = {
-    serverHost: 'localhost',
-    tunnelServerUrl: '',
-    tunnelSignatureKey: '27fb7d1c161b7ca52d73cce0f1d833f9f5b5ec89',
-      // 腾讯云相关配置可以查看云 API 秘钥控制台：https://console.cloud.tencent.com/capi
-    qcloudAppId: '1252809324',
-    qcloudSecretId: 'AKIDHNDoAKJuKVQ6XimXCdv4zlU1IVVMFpFP',
-    qcloudSecretKey: '3rPhkY6PSFvNhlbDbliRvBD3f5HFyUpw',
-    wxMessageToken: 'weixinmsgtoken',
-    networkTimeout: 30000,
+    // 本地开发配置
+    // serverHost: 'localhost',
+    // tunnelServerUrl: '',
+    // tunnelSignatureKey: '27fb7d1c161b7ca52d73cce0f1d833f9f5b5ec89',
+    //   // 腾讯云相关配置可以查看云 API 秘钥控制台：https://console.cloud.tencent.com/capi
+    // qcloudAppId: '1252809324',
+    // qcloudSecretId: 'AKIDHNDoAKJuKVQ6XimXCdv4zlU1IVVMFpFP',
+    // qcloudSecretKey: '3rPhkY6PSFvNhlbDbliRvBD3f5HFyUpw',
+    // wxMessageToken: 'weixinmsgtoken',
+    // networkTimeout: 30000,
     
     port: '5757',
     rootPathname: '',
@@ -27,14 +28,14 @@ const CONF = {
      * 开发环境下，MySQL 的初始密码为您的微信小程序 appid
      */
     mysql: {
-      // host: 'localhost',
-        host: '192.168.100.167',
+      host: 'localhost',
+        // host: '192.168.100.167',
         port: 3306,
-        // user: 'root',
-        user: 'admin',
+        user: 'root',
+        // user: 'admin',
         db: 'cAuth',
-        // pass: 'wx5074aa27d9d77ac0',
-        pass: 'admin@123',
+        pass: 'wx5074aa27d9d77ac0',
+        // pass: 'admin@123',
         char: 'utf8mb4'
     },
 
