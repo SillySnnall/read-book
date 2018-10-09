@@ -1,9 +1,12 @@
 <template>
   <div class="comment-list">
-    <div class="page-title">
-        我的评论
+    <div class="page-title" v-if="comments.length">
+        评论
     </div>
-    <div v-for="comment in comments.list" :key="comment.id" class="comment">
+    <div v-for="comment in comments" 
+    :key="comment.id"
+    @click="handleClick(comment)" 
+    class="comment">
         <div class="user">
             <div class="inline">
                 <img :src="comment.image" class="avatar" mode='aspectFit' alt="">
@@ -27,7 +30,7 @@
 <script>
 export default {
   name: "",
-  props: ["comments"],
+  props: ["comments", "type"],
   data() {
     return {};
   },
@@ -40,7 +43,15 @@ export default {
 
   mounted() {},
 
-  methods: {},
+  methods: {
+    handleClick(item) {
+      if (this.type === "user") {
+        wx.navigateTo({
+          url: "/pages/detail/main?id=" + item.bookid
+        });
+      }
+    }
+  },
 
   watch: {}
 };
@@ -58,7 +69,7 @@ export default {
     }
     .user {
       .inline {
-          display: inline;
+        display: inline;
         .avatar {
           width: 20px;
           height: 20px;

@@ -2,7 +2,7 @@
 <div>
   <BookInfo :info='info'></BookInfo>
   <CommentList :comments='comments'></CommentList>
-  <div class="comment">
+  <div class="comment" v-if="showAdd">
     <textarea 
     v-model='comment' 
     class="textarea" 
@@ -24,6 +24,10 @@
       评论
     </button>
   </div>
+  <div v-else class="text-footer">
+    未登录或者已经评论过了
+  </div>
+  <button class="btn" open-type='share'>转发给好友</button>
 </div>
 </template>
 
@@ -42,7 +46,7 @@ export default {
       comment: "",
       phone: "",
       location: "",
-      comments:[]
+      comments: []
     };
   },
 
@@ -51,7 +55,19 @@ export default {
     CommentList
   },
 
-  computed: {},
+  computed: {
+    showAdd() {
+      // 没有登录
+      if (!this.userinfo.openId) {
+        return false;
+      }
+      // 评论页查询到有自己的openid
+      if (this.comments.filter(v => v.openid == this.userinfo.openId).length) {
+        return false;
+      }
+      return true;
+    }
+  },
 
   beforeMount() {},
 
@@ -63,13 +79,16 @@ export default {
     if (userinfo) {
       this.userinfo = userinfo;
     }
+    wx.showShareMenu({
+      withShareTicket: true
+    });
   },
 
   methods: {
     async getComments() {
       const comments = await get("/weapp/commentlist", { bookid: this.bookid });
-      this.comments = comments;
-      console.log(comments)
+      this.comments = comments.list || [];
+      console.log(comments);
     },
     async addComment() {
       if (!this.comment) {
@@ -86,6 +105,7 @@ export default {
       try {
         const res = await post("/weapp/addcomment", data);
         this.comment = "";
+        this.getComments();
       } catch (error) {
         showModal("错误", error);
       }
